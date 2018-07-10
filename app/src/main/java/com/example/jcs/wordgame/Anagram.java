@@ -1,18 +1,32 @@
 package com.example.jcs.wordgame;
 
+import java.io.IOException;
 import java.util.Random;
 
 public class Anagram {
     public static final Random RANDOM = new Random();
-    public static final String[] WORDS = {"ACCOUNT", "ADDITION",
-            "AGREEMENT", "ANGRY", "ANIMAL", "BEHAVIOUR", "BETWEEN", "BLACK", "CHEMICAL", "FOOLISH",
-            "FREQUENT", "GOVERNMENT", "GRAIN", "GRASS", "HOSPITAL", "PAYMENT", "POLITICAL",
-            "PROCESS", "SHAME", "SMASH", "SMOOTH", "STATEMENT", "SUBSTANCE", "TEACHING", "TENDENCY",
-            "TOMORROW", "TOUCH", "UMBRELLA", "WEATHER", "YESTERDAY"};
+    public static String [] WORDS;
+    String [] train()
+    {
+        ReadFile rf = new ReadFile();
 
-    public static String randomWord() {
-        return WORDS[RANDOM.nextInt(WORDS.length)];
-    }
+        // The text file location of your choice
+        String filename = "words.txt";
+
+        try
+        {
+              WORDS = rf.readLines(filename);
+            return WORDS;
+        }
+        catch(IOException e)
+        {
+            // Print out the exception that occurred
+            System.out.println("Unable to create "+filename+": "+e.getMessage());
+            return null;
+        }
+
+    public static String randomWord(){
+        {return WORDS[RANDOM.nextInt(WORDS.length)];}
 
     public static String shuffleWord(String word) {
         if (word != null  &&  !"".equals(word)) {
